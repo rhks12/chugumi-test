@@ -1,1274 +1,332 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>추구미 테스트</title>
-
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-
 body{
-
-font-family:
-Pretendard,
-sans-serif;
-
-background:#f7f5ef;
-
-color:#222;
-
+  font-family: Pretendard, sans-serif;
+  background:#f7f5ef;
+  color:#222;
 }
-
-.hidden{
-display:none;
-}
-
+.hidden{ display:none; }
 .container{
-
-max-width:600px;
-
-margin:auto;
-
-padding:20px;
-
-min-height:100vh;
-
+  max-width:600px;
+  margin:auto;
+  padding:20px;
+  min-height:100vh;
 }
-
 .card{
-
-background:white;
-
-border-radius:24px;
-
-padding:24px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.08);
-
+  background:white;
+  border-radius:24px;
+  padding:24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
 }
-
 .hero{
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-min-height:100vh;
-
-text-align:center;
-
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  text-align:center;
 }
-
 .hero h1{
-
-font-size:2rem;
-
-margin-bottom:20px;
-
+  font-size:2rem;
+  margin-bottom:20px;
 }
-
 .hero p{
-
-line-height:1.8;
-
-color:#666;
-
-margin-bottom:24px;
-
+  line-height:1.8;
+  color:#666;
+  margin-bottom:24px;
 }
-
 .main-btn{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:16px;
-
-background:#7c6f64;
-
-color:white;
-
-font-size:1rem;
-
-cursor:pointer;
-
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:16px;
+  background:#7c6f64;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
 }
-
-.progress{
-
-margin-bottom:20px;
-
-}
-
+.progress{ margin-bottom:20px; }
 .progress-bar{
-
-height:10px;
-
-background:#ddd;
-
-border-radius:999px;
-
-overflow:hidden;
-
+  height:10px;
+  background:#ddd;
+  border-radius:999px;
+  overflow:hidden;
 }
-
 .progress-fill{
-
-height:100%;
-
-width:0%;
-
-background:#7c6f64;
-
-transition:.3s;
-
+  height:100%;
+  width:0%;
+  background:#7c6f64;
+  transition:.3s;
 }
-
 .question{
-
-font-size:1.3rem;
-
-font-weight:600;
-
-margin-bottom:20px;
-
-line-height:1.5;
-
+  font-size:1.3rem;
+  font-weight:600;
+  margin-bottom:20px;
+  line-height:1.5;
 }
-
 .answer{
-
-width:100%;
-
-padding:16px;
-
-margin-bottom:12px;
-
-border:none;
-
-border-radius:14px;
-
-background:#f6f6f6;
-
-cursor:pointer;
-
-font-size:1rem;
-
-text-align:left;
-
+  width:100%;
+  padding:16px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:14px;
+  background:#f6f6f6;
+  cursor:pointer;
+  font-size:1rem;
+  text-align:left;
 }
-
-.answer:hover{
-
-background:#ece8e0;
-
-}
-
+.answer:hover{ background:#ece8e0; }
 .result-title{
-
-font-size:2rem;
-
-text-align:center;
-
-margin-bottom:12px;
-
+  font-size:2rem;
+  text-align:center;
+  margin-bottom:12px;
 }
-
 .result-desc{
-
-text-align:center;
-
-color:#666;
-
-margin-bottom:24px;
-
-line-height:1.6;
-
+  text-align:center;
+  color:#666;
+  margin-bottom:24px;
+  line-height:1.6;
 }
-
 .section-title{
-
-font-weight:700;
-
-margin-top:20px;
-
-margin-bottom:10px;
-
+  font-weight:700;
+  margin-top:20px;
+  margin-bottom:10px;
 }
-
 .info-box{
-
-background:#f8f8f8;
-
-padding:14px;
-
-border-radius:14px;
-
-margin-bottom:12px;
-
+  background:#f8f8f8;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:12px;
 }
-
 .match-btn{
-
-padding:10px 14px;
-
-border:none;
-
-border-radius:999px;
-
-background:#ece8e0;
-
-margin:4px;
-
-cursor:pointer;
-
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  background:#ece8e0;
+  margin:4px;
+  cursor:pointer;
 }
-
 .product-card{
-
-background:#fafafa;
-
-padding:14px;
-
-border-radius:14px;
-
-margin-bottom:10px;
-
-cursor:pointer;
-
+  background:#fafafa;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:10px;
+  /* 모바일에서 버튼처럼 보이지 않도록 커서 속성 제거 */
 }
-
 .share-grid{
-
-display:grid;
-
-grid-template-columns:
-1fr 1fr 1fr;
-
-gap:10px;
-
-margin-top:20px;
-
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:20px;
 }
-
 .share-btn{
-
-border:none;
-
-padding:12px;
-
-border-radius:14px;
-
-background:#ece8e0;
-
-cursor:pointer;
-
+  border:none;
+  padding:12px;
+  border-radius:14px;
+  background:#ece8e0;
+  cursor:pointer;
 }
-
 </style>
-
 </head>
-
 <body>
 
 <div class="container">
+  <div id="startScreen">
+    <div class="hero">
+      <h1>✨ 추구미 테스트</h1>
+      <p>
+        10개의 질문으로 알아보는<br>
+        나의 소비 취향과 라이프스타일<br><br>
+        ⏱ 약 1분 소요
+      </p>
+      <button class="main-btn" onclick="startTest()">테스트 시작하기</button>
+    </div>
+  </div>
 
-<!-- 시작화면 -->
+  <div id="quizScreen" class="hidden">
+    <div class="progress">
+      <div id="progressText">1 / 10</div>
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div id="question" class="question"></div>
+      <div id="answers"></div>
+    </div>
+  </div>
 
-<div id="startScreen">
-
-<div class="hero">
-
-<h1>
-✨ 추구미 테스트
-</h1>
-
-<p>
-
-에니어그램 기반으로 알아보는
-
-<br>
-
-나의 소비 취향과 라이프스타일
-
-<br><br>
-
-⏱ 약 1분 30초 소요
-
-</p>
-
-<button
-class="main-btn"
-onclick="startTest()">
-
-테스트 시작하기
-
-</button>
-
-</div>
-
-</div>
-
-<!-- 질문 -->
-
-<div
-id="quizScreen"
-class="hidden">
-
-<div class="progress">
-
-<div id="progressText">
-
-1 / 18
-
-</div>
-
-<div class="progress-bar">
-
-<div
-id="progressFill"
-class="progress-fill">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div
-id="question"
-class="question">
-
-</div>
-
-<div id="answers">
-
-</div>
-
-</div>
-
-</div>
-
-<!-- 결과 -->
-
-<div
-id="resultScreen"
-class="hidden">
-
-<div
-id="resultCard"
-class="card">
-
-</div>
-
-</div>
-
+  <div id="resultScreen" class="hidden">
+    <div id="resultCard" class="card"></div>
+  </div>
 </div>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 <script>
-
 const results = {
-
-1:{
-name:"갓생미",
-emoji:"📋",
-
-desc:
-"쉬는 날에도 할 일 목록부터 작성하는 사람",
-
-high1:
-"✔ 알람보다 먼저 일어나기 94%",
-
-high2:
-"✔ 계획표 작성하기 91%",
-
-low:
-"❌ 에라 모르겠다 외치기 2%",
-
-matches:[2,9],
-
-products:[
-"플래너",
-"데스크패드",
-"생산성 스티커"
-]
-},
-
-2:{
-name:"무해미",
-emoji:"🕊️",
-
-desc:
-"인간 공기청정기. 어딜 가도 분위기를 좋게 만든다.",
-
-high1:
-"✔ 친구 고민 들어주기 96%",
-
-high2:
-"✔ 선물 챙겨주기 89%",
-
-low:
-"❌ 카톡 읽고 안 읽은 척하기 1%",
-
-matches:[1,4],
-
-products:[
-"동물 키링",
-"캐릭터 그립톡",
-"힐링 굿즈"
-]
-},
-
-3:{
-name:"인싸미",
-emoji:"🏆",
-
-desc:
-"좋은 건 나만 알 수 없는 사람",
-
-high1:
-"✔ 인생샷 남기기 93%",
-
-high2:
-"✔ 트렌드 먼저 발견하기 88%",
-
-low:
-"❌ 조용히 구석 자리 선점하기 4%",
-
-matches:[7,8],
-
-products:[
-"트렌드 그립톡",
-"SNS 굿즈",
-"신상 아이템"
-]
-},
-4:{
-name:"감성미",
-emoji:"🌙",
-
-desc:
-"새벽 2시에 갑자기 인생을 생각하는 사람",
-
-high1:
-"✔ 플레이리스트 만들기 92%",
-
-high2:
-"✔ 감성 글 저장하기 89%",
-
-low:
-"❌ 감성 파괴 발언하기 2%",
-
-matches:[2,7],
-
-products:[
-"감성 그립톡",
-"무드등",
-"아트 키링"
-]
-},
-
-5:{
-name:"지식미",
-emoji:"📚",
-
-desc:
-"모르는 게 생기면 잠이 안 오는 사람",
-
-high1:
-"✔ 검색부터 하기 97%",
-
-high2:
-"✔ 정보 수집하기 93%",
-
-low:
-"❌ 출처 없이 믿어버리기 1%",
-
-matches:[1,6],
-
-products:[
-"독서 굿즈",
-"메모패드",
-"기능성 소품"
-]
-},
-
-6:{
-name:"안정미",
-emoji:"🛡️",
-
-desc:
-"후기 100개 보고 결제하는 사람",
-
-high1:
-"✔ 리뷰 정독하기 98%",
-
-high2:
-"✔ 위험 피하기 90%",
-
-low:
-"❌ 3초 만에 결제하기 2%",
-
-matches:[5,9],
-
-products:[
-"실용 키링",
-"미니 파우치",
-"생활용품"
-]
-},
-
-7:{
-name:"즐겜미",
-emoji:"🎉",
-
-desc:
-"일단 재밌어 보이면 해보는 사람",
-
-high1:
-"✔ 즉흥 여행 가기 91%",
-
-high2:
-"✔ 신상 체험하기 89%",
-
-low:
-"❌ 하루 종일 계획표만 보기 1%",
-
-matches:[3,4],
-
-products:[
-"재미템",
-"랜덤박스",
-"신기한 굿즈"
-]
-},
-
-8:{
-name:"알파미",
-emoji:"🔥",
-
-desc:
-"일단 해보고 안 되면 그때 생각하는 사람",
-
-high1:
-"✔ 리더 역할 맡기 95%",
-
-high2:
-"✔ 결단 내리기 92%",
-
-low:
-"❌ 누가 대신 정해주길 기다리기 1%",
-
-matches:[3,9],
-
-products:[
-"블랙 그립톡",
-"메탈 키링",
-"미니멀 굿즈"
-]
-},
-
-9:{
-name:"평온미",
-emoji:"☕",
-
-desc:
-"웬만한 건 다 괜찮은 사람",
-
-high1:
-"✔ 분위기 맞추기 96%",
-
-high2:
-"✔ 갈등 피하기 91%",
-
-low:
-"❌ 댓글창에서 싸우기 0.5%",
-
-matches:[1,6],
-
-products:[
-"심플 그립톡",
-"미니멀 키링",
-"무채색 소품"
-]
-}
-
+  1:{ name:"갓생미", emoji:"📋", desc:"쉬는 날에도 할 일 목록부터 작성하는 사람", high1:"✔ 알람보다 먼저 일어나기 94%", high2:"✔ 계획표 작성하기 91%", low:"❌ 에라 모르겠다 외치기 2%", matches:[2,9], products:["플래너", "데스크패드", "생산성 스티커"] },
+  2:{ name:"무해미", emoji:"🕊️", desc:"인간 공기청정기. 어딜 가도 분위기를 좋게 만든다.", high1:"✔ 친구 고민 들어주기 96%", high2:"✔ 선물 챙겨주기 89%", low:"❌ 카톡 읽고 안 읽은 척하기 1%", matches:[1,4], products:["동물 키링", "캐릭터 그립톡", "힐링 굿즈"] },
+  3:{ name:"인싸미", emoji:"🏆", desc:"좋은 건 나만 알 수 없는 사람", high1:"✔ 인생샷 남기기 93%", high2:"✔ 트렌드 먼저 발견하기 88%", low:"❌ 조용히 구석 자리 선점하기 4%", matches:[7,8], products:["트렌드 그립톡", "SNS 굿즈", "신상 아이템"] },
+  4:{ name:"감성미", emoji:"🌙", desc:"새벽 2시에 갑자기 인생을 생각하는 사람", high1:"✔ 플레이리스트 만들기 92%", high2:"✔ 감성 글 저장하기 89%", low:"❌ 감성 파괴 발언하기 2%", matches:[2,7], products:["감성 그립톡", "무드등", "아트 키링"] },
+  5:{ name:"지식미", emoji:"📚", desc:"모르는 게 생기면 잠이 안 오는 사람", high1:"✔ 검색부터 하기 97%", high2:"✔ 정보 수집하기 93%", low:"❌ 출처 없이 믿어버리기 1%", matches:[1,6], products:["독서 굿즈", "메모패드", "기능성 소품"] },
+  6:{ name:"안정미", emoji:"🛡️", desc:"후기 100개 보고 결제하는 사람", high1:"✔ 리뷰 정독하기 98%", high2:"✔ 위험 피하기 90%", low:"❌ 3초 만에 결제하기 2%", matches:[5,9], products:["실용 키링", "미니 파우치", "생활용품"] },
+  7:{ name:"즐겜미", emoji:"🎉", desc:"일단 재밌어 보이면 해보는 사람", high1:"✔ 즉흥 여행 가기 91%", high2:"✔ 신상 체험하기 89%", low:"❌ 하루 종일 계획표만 보기 1%", matches:[3,4], products:["재미템", "랜덤박스", "신기한 굿즈"] },
+  8:{ name:"알파미", emoji:"🔥", desc:"일단 해보고 안 되면 그때 생각하는 사람", high1:"✔ 리더 역할 맡기 95%", high2:"✔ 결단 내리기 92%", low:"❌ 누가 대신 정해주길 기다리기 1%", matches:[3,9], products:["블랙 그립톡", "메탈 키링", "미니멀 굿즈"] },
+  9:{ name:"평온미", emoji:"☕", desc:"웬만한 건 다 괜찮은 사람", high1:"✔ 분위기 맞추기 96%", high2:"✔ 갈등 피하기 91%", low:"❌ 댓글창에서 싸우기 0.5%", matches:[1,6], products:["심플 그립톡", "미니멀 키링", "무채색 소품"] }
 };
 
 const questions = [
-{
-q:"친구들이 단톡방에서 나를 태그하는 순간은?",
-a:[
-["야 이거 규칙 뭐냐?",1],
-["이거 누구 챙겨야 하지?",2],
-["이거 올리면 반응 오겠는데?",3],
-["이거 감성 미쳤다...",4]
-]
-},
-
-{
-q:"갑자기 하루 공짜 휴가가 생겼다.",
-a:[
-["밀린 할 일 해결",1],
-["보고 싶던 사람 만나기",2],
-["뭐라도 성과 남기기",3],
-["혼자 감성 충전",4]
-]
-},
-
-{
-q:"궁금한 게 생겼다.",
-a:[
-["검색 30분 시작",5],
-["믿을 만한 정보인지 확인",6],
-["일단 해보고 판단",7],
-["내가 직접 해결",8]
-]
-},
-
-{
-q:"친구들이 생각하는 내 이미지",
-a:[
-["인간 플래너",1],
-["인간 공기청정기",2],
-["인간 하이라이트",3],
-["인간 플레이리스트",4]
-]
-},
-
-{
-q:"쇼핑할 때 더 중요한 건?",
-a:[
-["오래 쓸 수 있나?",6],
-["선물하기 좋나?",2],
-["사람들 반응 좋겠는데?",3],
-["예쁘다.",4]
-]
-},
-
-{
-q:"SNS 올릴 때",
-a:[
-["기록용",1],
-["사람들과 소통",2],
-["반응 궁금함",3],
-["분위기 중요",4]
-]
-},
-
-{
-q:"새벽 2시의 나",
-a:[
-["내일 계획 확인",1],
-["친구 생각",2],
-["성공한 미래 상상",3],
-["갑자기 인생 생각",4]
-]
-},
-
-{
-q:"친구랑 여행 가면",
-a:[
-["일정표 담당",1],
-["분위기 담당",2],
-["인생샷 담당",3],
-["감성 BGM 담당",4]
-]
-},
-
-{
-q:"가장 듣기 좋은 말",
-a:[
-["진짜 믿음직하다",5],
-["너 진짜 착하다",2],
-["너 진짜 잘 나간다",3],
-["너 감성 좋다",4]
-]
-},
-
-{
-q:"좀비가 나타났다.",
-a:[
-["생존 계획 세움",6],
-["사람들 챙김",2],
-["일단 뜀",7],
-["무기 찾음",8]
-]
-},
-
-{
-q:"알고리즘에 계속 뜨는 콘텐츠",
-a:[
-["갓생 브이로그",1],
-["힐링 동물 영상",2],
-["성공 스토리",3],
-["감성 플레이리스트",4]
-]
-},
-
-{
-q:"새로운 물건을 살 때",
-a:[
-["스펙",5],
-["후기",6],
-["재밌어 보이는지",7],
-["존재감",8]
-]
-},
-
-{
-q:"친구가 고민 상담을 한다.",
-a:[
-["해결책 알려줌",5],
-["끝까지 들어줌",2],
-["동기부여 해줌",3],
-["공감해줌",4]
-]
-},
-
-{
-q:"나랑 가장 가까운 말",
-a:[
-["완벽하게 하고 싶음",1],
-["좋은 사람이고 싶음",2],
-["잘 되고 싶음",3],
-["특별하고 싶음",4]
-]
-},
-
-{
-q:"나랑 가장 가까운 말",
-a:[
-["더 알고 싶음",5],
-["안전한 게 좋음",6],
-["재밌는 게 최고",7],
-["내가 결정할래",8]
-]
-},
-
-{
-q:"친구들이 나를 잃어버렸을 때",
-a:[
-["계획 짜고 있음",1],
-["누군가 챙기고 있음",2],
-["사람들 사이에 있음",3],
-["혼자 감성 타고 있음",4]
-]
-},
-
-{
-q:"100만원이 생기면?",
-a:[
-["자기계발",1],
-["선물 구매",2],
-["나를 위한 투자",3],
-["감성템 플렉스",4]
-]
-},
-
-{
-q:"전자제품을 살 때",
-a:[
-["성능 비교",5],
-["후기 100개 읽기",6],
-["일단 사보기",7],
-["제일 강력한 모델",8]
-]
-}
+  { q:"친구가 과제를 대충 제출하려고 한다.", a:[["한 번만 더 확인해보자.",1], ["그래도 고생했네!",2], ["결과만 좋으면 된 거 아냐?",3], ["너만의 방식이 있는 거겠지.",4]] },
+  { q:"새 전자기기를 샀다.", a:[["설명서부터 읽는다",5], ["불량인지 먼저 확인한다",6], ["일단 눌러본다",7], ["내 스타일대로 세팅부터 한다",8]] },
+  { q:"친구들이 메뉴를 20분째 못 정하고 있다.", a:[["그냥 이걸로 하자.",1], ["다들 먹고 싶은 거 말해봐.",2], ["요즘 제일 핫한 거 먹자.",3], ["난 다 좋아. 싸우지만 말자.",9]] },
+  { q:"팀플 결과물을 제출하기 직전이다.", a:[["마지막까지 검토한다",1], ["다들 수고했다고 말한다",2], ["발표할 생각에 설렌다",3], ["우리 팀만의 색깔이 보여서 좋다",4]] },
+  { q:"친구들이 게임을 시작하려고 한다.", a:[["룰부터 확인한다",1], ["다 같이 즐길 수 있는지 본다",2], ["MVP 먹을 생각부터 한다",3], ["남들이 안 하는 캐릭터 고른다",4]] },
+  { q:"새 취미가 생겼다.", a:[["관련 자료를 찾아본다",5], ["실패할 경우를 먼저 생각한다",6], ["일단 해본다",7], ["내가 먼저 판을 깐다",8]] },
+  { q:"갑자기 주말이 통째로 비었다.", a:[["미뤄둔 걸 정리한다",5], ["집에서 재충전한다",6], ["여행이나 놀러 간다",7], ["사람들 모아서 프로젝트 하나 시작한다",8]] },
+  { q:"친구들이 길을 잃었다.", a:[["지도를 다시 확인한다",5], ["안전한 길부터 찾는다",6], ["이것도 추억이지!",7], ["일단 나만 따라와.",8]] },
+  { q:"친구들이 나를 찾고 있다. 나는 지금?", a:[["궁금한 거 검색 중",5], ["내일 준비 중",6], ["재밌는 거 하고 있음",7], ["사람들 이끌고 있음",8]] },
+  { q:"친구들이 나를 한 단어로 부른다면?", a:[["FM",1], ["강아지",2], ["주인공",3], ["평화주의자",9]] }
 ];
 
 let currentQuestion = 0;
+const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
 
-const scores = {
-1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0
-};
 function startTest(){
-
-document
-.getElementById("startScreen")
-.classList.add("hidden");
-
-document
-.getElementById("quizScreen")
-.classList.remove("hidden");
-
-renderQuestion();
-
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+  renderQuestion();
 }
 
 function renderQuestion(){
-
-const q =
-questions[currentQuestion];
-
-document
-.getElementById("question")
-.innerText =
-q.q;
-
-document
-.getElementById("progressText")
-.innerText =
-`${currentQuestion+1} / ${questions.length}`;
-
-document
-.getElementById("progressFill")
-.style.width =
-`${((currentQuestion+1)/questions.length)*100}%`;
-
-const answers =
-document
-.getElementById("answers");
-
-answers.innerHTML = "";
-
-q.a.forEach(answer=>{
-
-const btn =
-document.createElement("button");
-
-btn.className =
-"answer";
-
-btn.innerText =
-answer[0];
-
-btn.onclick = ()=>{
-
-scores[answer[1]]++;
-
-currentQuestion++;
-
-if(
-currentQuestion <
-questions.length
-){
-
-renderQuestion();
-
-}
-else{
-
-showResult();
-
-}
-
-};
-
-answers.appendChild(btn);
-
-});
-
+  const q = questions[currentQuestion];
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("progressText").innerText = `${currentQuestion+1} / ${questions.length}`;
+  document.getElementById("progressFill").style.width = `${((currentQuestion+1)/questions.length)*100}%`;
+  
+  const answers = document.getElementById("answers");
+  answers.innerHTML = "";
+  
+  q.a.forEach(answer=>{
+    const btn = document.createElement("button");
+    btn.className = "answer";
+    btn.innerText = answer[0];
+    btn.onclick = ()=>{
+      scores[answer[1]]++;
+      currentQuestion++;
+      if(currentQuestion < questions.length){
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    };
+    answers.appendChild(btn);
+  });
 }
 
 function getMainType(){
-
-const sorted =
-Object.entries(scores)
-.sort((a,b)=>b[1]-a[1]);
-
-return Number(sorted[0][0]);
-
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  return Number(sorted[0][0]);
 }
 
 function getSubType(){
-
-const sorted =
-Object.entries(scores)
-.sort((a,b)=>b[1]-a[1]);
-
-return Number(sorted[1][0]);
-
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  return Number(sorted[1][0]);
 }
 
 function showResult(){
-
-document
-.getElementById("quizScreen")
-.classList.add("hidden");
-
-document
-.getElementById("resultScreen")
-.classList.remove("hidden");
-
-const main =
-getMainType();
-
-const sub =
-getSubType();
-
-renderResult(main,sub);
-
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
+  const main = getMainType();
+  const sub = getSubType();
+  renderResult(main,sub);
 }
 
 function renderResult(main,sub){
-
-const data =
-results[main];
-
-const subData =
-results[sub];
-
-let matchHTML = "";
-
-data.matches.forEach(type=>{
-
-const match =
-results[type];
-
-matchHTML += `
-
-<button
-class="match-btn"
-onclick="renderResult(${type},${main})">
-
-${match.emoji}
-${match.name}
-
-</button>
-
-`;
-
-});
-
-let productHTML = "";
-
-data.products.forEach(product=>{
-
-productHTML += `
-
-<div
-class="product-card"
-onclick="openProduct('${product}')">
-
-🛒 ${product}
-
-</div>
-
-`;
-
-});
-
-document
-.getElementById("resultCard")
-.innerHTML = `
-
-<div class="result-title">
-
-${data.emoji}
-${data.name}
-
-</div>
-
-<div class="result-desc">
-
-"${data.desc}"
-
-</div>
-
-<div class="section-title">
-
-✨ 높은 확률
-
-</div>
-
-<div class="info-box">
-
-${data.high1}
-
-<br><br>
-
-${data.high2}
-
-</div>
-
-<div class="section-title">
-
-😂 낮은 확률
-
-</div>
-
-<div class="info-box">
-
-${data.low}
-
-</div>
-
-<div class="section-title">
-
-🧬 부유형
-
-</div>
-
-<div class="info-box">
-
-${subData.emoji}
-${subData.name}
-
-<br><br>
-
-${subData.desc}
-
-</div>
-
-<div class="section-title">
-
-💘 잘 맞는 추구미
-
-</div>
-
-${matchHTML}
-
-<div class="section-title">
-
-🛍 추천 아이템
-
-</div>
-
-${productHTML}
-
-
-<div class="share-grid">
-
-<button
-class="share-btn"
-onclick="copyResult()">
-
-링크복사
-
-</button>
-
-<button
-class="share-btn"
-onclick="shareResult()">
-
-공유하기
-
-</button>
-
-<button
-class="share-btn"
-onclick="saveResultImage()">
-
-이미지저장
-
-</button>
-
-</div>
-
-<div style="margin-top:12px;">
-
-<button
-class="main-btn"
-onclick="restartTest()">
-
-다시하기
-
-</button>
-
-</div>
-
-`;
-
-}
-function openProduct(product){
-
-alert(
-`${product}
-
-스마트스토어 상품 링크를
-추가하면 이동됩니다.`
-);
-
+  const data = results[main];
+  const subData = results[sub];
+  let matchHTML = "";
+  
+  data.matches.forEach(type=>{
+    const match = results[type];
+    matchHTML += `<button class="match-btn" onclick="renderResult(${type},${main})">${match.emoji} ${match.name}</button>`;
+  });
+  
+  let productHTML = "";
+  data.products.forEach(product=>{
+    // 링크 기능(onclick)을 없애고 단순 텍스트 박스로 변경했습니다.
+    productHTML += `<div class="product-card">🛍️ ${product}</div>`;
+  });
+
+  document.getElementById("resultCard").innerHTML = `
+    <div class="result-title">${data.emoji} ${data.name}</div>
+    <div class="result-desc">"${data.desc}"</div>
+    <div class="section-title">✨ 높은 확률</div>
+    <div class="info-box">${data.high1}<br><br>${data.high2}</div>
+    <div class="section-title">😂 낮은 확률</div>
+    <div class="info-box">${data.low}</div>
+    <div class="section-title">🧬 부유형</div>
+    <div class="info-box">${subData.emoji} ${subData.name}<br><br>${subData.desc}</div>
+    <div class="section-title">💘 잘 맞는 추구미</div>
+    ${matchHTML}
+    <div class="section-title">추천 아이템</div>
+    ${productHTML}
+
+    <div class="share-grid">
+      <button class="share-btn" onclick="shareResult()">공유하기</button>
+      <button class="share-btn" onclick="saveResultImage()">이미지저장</button>
+    </div>
+    <div style="margin-top:12px;">
+      <button class="main-btn" onclick="restartTest()">다시하기</button>
+    </div>
+  `;
 }
 
 function restartTest(){
-
-currentQuestion = 0;
-
-for(let key in scores){
-
-scores[key] = 0;
-
-}
-
-document
-.getElementById("resultScreen")
-.classList.add("hidden");
-
-document
-.getElementById("startScreen")
-.classList.remove("hidden");
-
-window.scrollTo({
-top:0
-});
-
+  currentQuestion = 0;
+  for(let key in scores){ scores[key] = 0; }
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+  window.scrollTo({top:0});
 }
 
 function copyResult(){
-
-const text =
-"나의 추구미 테스트 결과를 확인해보세요!";
-
-navigator.clipboard
-.writeText(text);
-
-alert(
-"결과 문구가 복사되었습니다!"
-);
-
+  const text ="나의 추구미 테스트 결과를 확인해보세요!";
+  navigator.clipboard.writeText(text);
+  alert("결과 문구가 복사되었습니다!");
 }
 
 function shareResult(){
-
-if(navigator.share){
-
-navigator.share({
-
-title:
-"추구미 테스트",
-
-text:
-"나의 추구미 결과 확인하기",
-
-url:
-window.location.href
-
-});
-
-}else{
-
-copyResult();
-
-}
-
-}
-
-const storeLinks = {
-
-"플래너":"#",
-"데스크패드":"#",
-"생산성 스티커":"#",
-
-"동물 키링":"#",
-"캐릭터 그립톡":"#",
-"힐링 굿즈":"#",
-
-"트렌드 그립톡":"#",
-"SNS 굿즈":"#",
-"신상 아이템":"#",
-
-"감성 그립톡":"#",
-"무드등":"#",
-"아트 키링":"#",
-
-"독서 굿즈":"#",
-"메모패드":"#",
-"기능성 소품":"#",
-
-"실용 키링":"#",
-"미니 파우치":"#",
-"생활용품":"#",
-
-"재미템":"#",
-"랜덤박스":"#",
-"신기한 굿즈":"#",
-
-"블랙 그립톡":"#",
-"메탈 키링":"#",
-"미니멀 굿즈":"#",
-
-"심플 그립톡":"#",
-"미니멀 키링":"#",
-"무채색 소품":"#"
-
-};
-
-function openProduct(product){
-
-const link =
-storeLinks[product];
-
-if(
-link &&
-link !== "#"
-){
-
-window.open(
-link,
-"_blank"
-);
-
-}else{
-
-alert(
-`"${product}"
-
-상품 링크를 추가하면
-스마트스토어로 이동합니다.`
-);
-
-}
-
+  // 모바일 기기의 자체 공유 기능을 호출합니다.
+  if(navigator.share){
+    navigator.share({
+      title:"추구미 테스트",
+      text:"나의 추구미 결과 확인하기",
+      url:window.location.href
+    }).catch(console.error); // 공유 취소 시 에러 무시
+  }else{
+    copyResult();
+  }
 }
 
 async function saveResultImage(){
-
-const target =
-document.getElementById(
-"resultCard"
-);
-
-const canvas =
-await html2canvas(
-target,
-{
-scale:2
-}
-);
-
-const image =
-canvas.toDataURL(
-"image/png"
-);
-
-const a =
-document.createElement("a");
-
-a.href = image;
-
-a.download =
-"chugumi-result.png";
-
-a.click();
-
+  const target = document.getElementById("resultCard");
+  const canvas = await html2canvas(target,{scale:2});
+  const image = canvas.toDataURL("image/png");
+  const a = document.createElement("a");
+  a.href = image;
+  a.download ="chugumi-result.png";
+  a.click();
 }
 </script>
-
 </body>
-
 </html>
